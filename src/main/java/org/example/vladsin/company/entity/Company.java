@@ -8,12 +8,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company")
+@Entity
 public class Company {
 
     @Id
@@ -30,8 +29,8 @@ public class Company {
     private String location;
 
     @Column(name = "budget")
-    private Long budget;
+    private double budget;
 
-    @OneToMany(mappedBy = "Department", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Department> departments;
 }

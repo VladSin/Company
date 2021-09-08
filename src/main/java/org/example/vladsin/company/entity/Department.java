@@ -8,12 +8,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "department")
+@Entity
 public class Department {
 
     @Id
@@ -32,6 +31,6 @@ public class Department {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-    @OneToMany(mappedBy = "Employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employees;
 }

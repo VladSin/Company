@@ -929,5 +929,115 @@ SELECT|sys.sys_config
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE,CREATE ROLE,DROP ROLE!
 </ObjectGrants>
     </user>
+    <table id="290" parent="5" name="company"/>
+    <table id="291" parent="5" name="department"/>
+    <table id="292" parent="5" name="employee"/>
+    <column id="293" parent="290" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="294" parent="290" name="budget">
+      <Position>2</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="295" parent="290" name="location">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="296" parent="290" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="297" parent="290" name="website">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="298" parent="290" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="299" parent="291" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="300" parent="291" name="location">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="301" parent="291" name="name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="302" parent="291" name="website">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="303" parent="291" name="company_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="304" parent="291" name="FK574somh2okhg2lwdahfdw9hq0">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="305" parent="291" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="306" parent="291" name="FK574somh2okhg2lwdahfdw9hq0">
+      <ColNames>company_id</ColNames>
+      <RefTableName>company</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="307" parent="292" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="308" parent="292" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="309" parent="292" name="married">
+      <Position>3</Position>
+      <DataType>bit(1)|0s</DataType>
+    </column>
+    <column id="310" parent="292" name="password">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="311" parent="292" name="salary">
+      <Position>5</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="312" parent="292" name="username">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="313" parent="292" name="department_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="314" parent="292" name="FK14tijxqry9ml17nk86sqfp561">
+      <ColNames>department_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="315" parent="292" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="316" parent="292" name="FK14tijxqry9ml17nk86sqfp561">
+      <ColNames>department_id</ColNames>
+      <RefTableName>department</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

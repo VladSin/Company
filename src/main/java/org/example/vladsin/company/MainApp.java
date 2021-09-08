@@ -14,11 +14,14 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        String fxmlFile = "/fxml/hello.fxml";
+        String fxmlFile = "/fxml/login.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-        stage.setTitle("JavaFX and Maven");
+
+        stage.setTitle("LCH Company");
         stage.setScene(new Scene(root));
+        stage.setWidth(1000);
+        stage.setHeight(600);
         stage.show();
     }
 }

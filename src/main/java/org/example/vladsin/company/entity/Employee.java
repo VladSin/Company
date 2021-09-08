@@ -7,36 +7,32 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "employee")
+@Entity
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "age")
-    private int age;
-
     @Column(name = "salary")
-    private int salary;
+    private double salary;
 
     @Column(name = "married")
     private boolean married;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Employee employee;
+    private Department department;
 }
