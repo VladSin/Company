@@ -2,24 +2,21 @@ package org.example.vladsin.company.repository;
 
 import org.example.vladsin.company.entity.Department;
 import org.example.vladsin.company.entity.Employee;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.example.vladsin.company.exeption.UsernameNotFoundException;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
-@Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository {
 
-    Optional<Employee> findById(Long id);
+    Employee save(Employee employee);
+
+    Employee findById(Long id);
 
     Employee findByEmail(String email);
-
-    Employee findByUsername(String username);
 
     List<Employee> findAll();
 
@@ -32,7 +29,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findAllBySalaryBetween(double minSalary, double maxSalary);
 
     List<Employee> findAllByDepartment(Department department);
-
 
     @Transactional
     @Modifying(clearAutomatically = true)
@@ -59,14 +55,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query(value = "update Employee set married = :married where id = :id")
     void updateMarried(@Param("id") Long id, @Param("married") boolean married);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Employee set username = :username, email = :email, salary = :salary, " +
-            "married = :married, department =:department where id = :id")
-    void updateEmployeeData(@Param("id") Long id,
-                            @Param("username") String username,
-                            @Param("email") String email,
-                            @Param("salary") double salary,
-                            @Param("married") boolean married,
-                            @Param("department") Department department);
+    void updateEmployeeData(Long id, Employee employee);
+
+    void deleteById(Long id);
 }

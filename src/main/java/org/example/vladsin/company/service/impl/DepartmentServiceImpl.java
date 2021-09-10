@@ -4,16 +4,17 @@ import org.example.vladsin.company.entity.Company;
 import org.example.vladsin.company.entity.Department;
 import org.example.vladsin.company.repository.DepartmentRepository;
 import org.example.vladsin.company.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
 
+    @Autowired
     public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
     }
@@ -24,7 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Optional<Department> getDepartmentById(Long id) {
+    public Department getDepartmentById(Long id) {
         return departmentRepository.findById(id);
     }
 
@@ -65,9 +66,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void updateDepartmentData(Long id, Department department) {
-        departmentRepository.updateDepartmentData(id,
-                department.getName(), department.getWebsite(),
-                department.getLocation(), department.getCompany(), department.getEmployees());
+        departmentRepository.updateDepartmentData(id, department);
     }
 
     @Override

@@ -1,51 +1,31 @@
 package org.example.vladsin.company.repository;
 
 import org.example.vladsin.company.entity.Company;
-import org.example.vladsin.company.entity.Department;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface CompanyRepository extends JpaRepository<Company, Long> {
+public interface CompanyRepository {
+
+    Company save(Company company);
+
+    Company findById(Long id);
 
     Company findByName(String name);
 
     List<Company> findAllByLocation(String location);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Company set name = :name where id = :id")
-    void updateName(@Param("id") Long id, @Param("name") String name);
+    List<Company> findAll();
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Company set website = :website where id = :id")
-    void updateWebsite(@Param("id") Long id, @Param("website") String website);
+    void updateName(Long id, String name);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Company set location = :location where id = :id")
-    void updateLocation(@Param("id") Long id, @Param("location") String location);
+    void updateWebsite(Long id, String website);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Company set budget = :budget where id = :id")
-    void updateBudget(@Param("id") Long id, @Param("budget") double budget);
+    void updateLocation(Long id, String location);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "update Company set name = :name, website = :website, location = :location, " +
-            "budget = :budget, departments =:departments where id = :id")
-    void updateCompanyData(@Param("id") Long id,
-                            @Param("name") String name,
-                            @Param("website") String website,
-                            @Param("location") String location,
-                            @Param("budget") double budget,
-                            @Param("department") List<Department> departments);
+    void updateBudget(Long id, double budget);
+
+    void updateCompanyData(Long id, Company company);
+
+    void deleteById(Long id);
 }

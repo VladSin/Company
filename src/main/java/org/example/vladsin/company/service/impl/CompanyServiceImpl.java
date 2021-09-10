@@ -3,16 +3,17 @@ package org.example.vladsin.company.service.impl;
 import org.example.vladsin.company.entity.Company;
 import org.example.vladsin.company.repository.CompanyRepository;
 import org.example.vladsin.company.service.CompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    @Autowired
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
@@ -23,7 +24,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Optional<Company> getCompanyById(Long id) {
+    public Company getCompanyById(Long id) {
         return companyRepository.findById(id);
     }
 
@@ -64,9 +65,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void updateCompanyData(Long id, Company company) {
-        companyRepository.updateCompanyData(id,
-                company.getName(), company.getWebsite(),
-                company.getLocation(), company.getBudget(), company.getDepartments());
+        companyRepository.updateCompanyData(id, company);
     }
 
     @Override

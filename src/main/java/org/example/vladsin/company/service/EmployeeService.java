@@ -5,13 +5,12 @@ import org.example.vladsin.company.entity.Employee;
 import org.example.vladsin.company.exeption.UsernameNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeService {
 
     Employee saveEmployee(Employee employee);
 
-    Optional<Employee> getEmployeeById(Long id);
+    Employee getEmployeeById(Long id);
 
     Employee getEmployeeByEmail(String email);
 

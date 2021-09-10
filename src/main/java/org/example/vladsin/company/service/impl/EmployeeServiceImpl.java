@@ -5,21 +5,19 @@ import org.example.vladsin.company.entity.Employee;
 import org.example.vladsin.company.exeption.UsernameNotFoundException;
 import org.example.vladsin.company.repository.EmployeeRepository;
 import org.example.vladsin.company.service.EmployeeService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, BCryptPasswordEncoder passwordEncoder) {
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -28,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployeeById(Long id) {
+    public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id);
     }
 
@@ -74,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployeePassword(Long id, String password) {
-        employeeRepository.updatePassword(id, passwordEncoder.encode(password));
+        employeeRepository.updatePassword(id, password);
     }
 
     @Override
@@ -94,12 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployeeData(Long id, Employee employee) {
-        employeeRepository.updateEmployeeData(id,
-                employee.getUsername(),
-                employee.getEmail(),
-                employee.getSalary(),
-                employee.isMarried(),
-                employee.getDepartment());
+        employeeRepository.updateEmployeeData(id, employee);
     }
 
     @Override
